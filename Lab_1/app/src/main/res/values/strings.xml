@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Grad RSVP</string>
+    <string name="title">Graduation Announcement</string>
+    <string name = "sub_text">A Night to Remember</string>
+    <string name = "date">Date: June 15th 2025</string>
+    <string name="time">Time: 5:00 pm</string>
+    <string name="location">Location: 1 Grand Ave \nSan Luis Obispo, CA 93405</string>
+</resources>
