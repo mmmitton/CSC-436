@@ -5,9 +5,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Checkbox
@@ -89,37 +91,15 @@ fun GradInviteText() {
         Stars()
         Text(
             text = stringResource(R.string.sub_text),
-            fontSize = 20.sp,
-            lineHeight = 50.sp,
+            fontSize = 30.sp,
+            lineHeight = 10.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
             color = Color.White,
-            fontFamily = FontFamily.Cursive
+            fontFamily = FontFamily.Cursive,
+            modifier = Modifier.padding(bottom = 0.dp) // Add padding below sub_text
         )
-        Text(
-            text = stringResource(R.string.date),
-            fontSize = 16.sp,
-            lineHeight = 20.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            color = Color.Green
-        )
-        Text(
-            text = stringResource(R.string.time),
-            fontSize = 16.sp,
-            lineHeight = 20.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            color = Color.Green
-        )
-        Text(
-            text = stringResource(R.string.location),
-            fontSize = 16.sp,
-            lineHeight = 20.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            color = Color.Green
-        )
+        Scroll()
         RSVPbox()
     }
 }
@@ -131,6 +111,60 @@ fun GradPreview() {
         GradScreen()
     }
 }
+
+@Preview
+@Composable
+fun Scroll() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 10.dp),
+        contentAlignment = Alignment.Center // Aligns children to the center of the box
+    ) {
+        // Scroll background image
+        Image(
+            painter = painterResource(R.drawable.scroll),
+            contentDescription = "Scroll",
+            alpha = 0.9f,
+            modifier = Modifier.size(width = 550.dp, height = 350.dp) // Adjusts the image to fill the available space
+        )
+
+        // Text content over the scroll
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(10.dp) // Add padding to position text inside the scroll
+        ) {
+            Text(
+                text = stringResource(R.string.date),
+                fontSize = 20.sp,
+                lineHeight = 28.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                color = Color.Blue,
+                fontFamily = FontFamily.Serif
+            )
+            Text(
+                text = stringResource(R.string.time),
+                fontSize = 18.sp,
+                lineHeight = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                color = Color.Blue,
+                fontFamily = FontFamily.Serif
+            )
+            Text(
+                text = stringResource(R.string.location),
+                fontSize = 18.sp,
+                lineHeight = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                color = Color.Blue,
+                fontFamily = FontFamily.Serif
+            )
+        }
+    }
+}
+
 
 @Preview
 @Composable
@@ -146,12 +180,13 @@ fun Background(){
 
 }
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Preview
 @Composable
 fun Stars() {
-    AsyncImage(
+    GlideImage(
         model = R.drawable.silver_star, // Replace with your GIF resource
-        contentDescription = "Rotating Star",
+        contentDescription = stringResource(R.string.star),
         modifier = Modifier.size(100.dp), // Adjust size as needed
         contentScale = ContentScale.Crop
     )
@@ -161,7 +196,7 @@ fun Stars() {
 fun GradCap() {
     GlideImage(
         model = R.drawable.moving_grad_cap,
-        contentDescription = "Graduation Cap",
+        contentDescription = stringResource(R.string.hat),
         modifier = Modifier.size(100.dp), // Adjust size as needed
         contentScale = ContentScale.Crop
     )
