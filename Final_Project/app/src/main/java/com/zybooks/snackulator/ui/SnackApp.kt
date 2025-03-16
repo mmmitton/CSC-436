@@ -1,4 +1,9 @@
 package com.zybooks.snackulator.ui
 
-class SnackApp {
+import androidx.compose.runtime.Composable
+
+
+@Composable
+fun SnackApp(){
+
 }

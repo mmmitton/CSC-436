@@ -2,6 +2,12 @@ package com.zybooks.snackulator.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+///////////////////// my colors /////////////////////
+val HeaderBackground = Color(0xFF9559DE)
+val ButtonBackground = Color(0xFF471782)
+val DropDownBackground = Color(0xFFd0b9ed)
+val FavoriteHeart = Color(0xFFe1b5e8)
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)

@@ -1,4 +1,8 @@
 package com.zybooks.snackulator.ui
 
-class StarbucksSceen {
+import androidx.compose.runtime.Composable
+
+@Composable
+fun StarbucksScreen(){
+
 }
