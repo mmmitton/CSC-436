@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.zybooks.snackulator.ui.theme.HomeScreen
+import com.zybooks.snackulator.ui.HomeScreen
 import com.zybooks.snackulator.ui.theme.SnackulatorTheme
 
 
