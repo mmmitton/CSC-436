@@ -51,26 +51,27 @@ import com.zybooks.snackulator.ui.theme.DropDownBackground
 import com.zybooks.snackulator.ui.theme.FavoriteHeart
 import com.zybooks.snackulator.ui.theme.HeaderBackground
 import com.zybooks.snackulator.ui.theme.SnackulatorTheme
-
+import androidx.navigation.NavController
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier.background(Color.White)) {
+fun HomeScreen(navController: NavController) {
 
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item{
             Row(modifier = Modifier.fillMaxWidth()
-                .height(22.dp)
+                .height(30.dp)
                 .background(ButtonBackground)){}
         }
         item {
             TopBox()
         }
         item{
-            ResturantDropDown()
+            ResturantDropDown(navController)
         }
         item{
             Trending()
@@ -209,7 +210,7 @@ fun TopBox(){
 
 
 @Composable
-fun ResturantDropDown(){
+fun ResturantDropDown(navController: NavController){
     var expanded by remember { mutableStateOf(false) }  // Track the dropdown state
     //var selectedOption by remember { mutableStateOf("Starbucks") }
     //val options = listOf("Starbucks", "More coming Eventually...")
@@ -262,7 +263,7 @@ fun ResturantDropDown(){
                     )
                 },
                 onClick = {
-                    //navController.navigate("starbucks")
+                    navController.navigate("starbucks")
                 }
             )
             DropdownMenuItem(
@@ -348,7 +349,7 @@ fun HouseShape(): GenericShape {
 @Preview(showBackground = true)
 @Composable
 fun ScreenPreview() {
-    SnackulatorTheme { HomeScreen() }
+    SnackulatorTheme { }
 
 }
 
