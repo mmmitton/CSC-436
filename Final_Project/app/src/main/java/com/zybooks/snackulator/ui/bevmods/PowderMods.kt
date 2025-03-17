@@ -133,6 +133,7 @@ fun PowderDropDown(beverage: Beverage) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable(onClick = { expanded = !expanded })
             .padding(16.dp)
             .background(Color.White, shape = RoundedCornerShape(16.dp))
             .border(6.dp, color = HeaderBackground, shape = RoundedCornerShape(16.dp))

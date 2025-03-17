@@ -27,6 +27,8 @@ fun SnackApp() {
             val beverage = when (beverageName) {
                 "Caffe Latte" -> BeverageDataSource().Caffe_Latte
                 //"Americano" -> BeverageDataSource().Americano
+                "Lavender Oatmilk Latte" -> BeverageDataSource().Lavender_Oatmilk_Latte
+                "Mocha Cookie Crumble Frappuccino" -> BeverageDataSource().Mocha_Cookie_Frap
                 else -> null
             }
             // Use the view model wrapper to handle state updates.

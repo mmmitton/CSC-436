@@ -64,6 +64,18 @@ fun HotCoffeeScreen(navController: NavController){
         item{
             Lattes(navController)
         }
+
+        item{
+            Cappuccino(navController)
+        }
+
+        item {
+            Mochas(navController)
+        }
+
+        item{
+            Macchiatos(navController)
+        }
     }
 
 
@@ -80,7 +92,7 @@ fun HotCoffeeTagline() {
     ) {
         Text(
             text = "🔥☕",  // Emojis for the beginning
-            fontSize = 20.sp,
+            fontSize = 34.sp,
             fontWeight = FontWeight.Bold,
             color = HeaderBackground,
             textAlign = TextAlign.Center,
@@ -98,16 +110,107 @@ fun HotCoffeeTagline() {
             fontFamily = FontFamily.Default
         )
 
-        Spacer(modifier = Modifier.width(8.dp))  // Space between text and emoji
+    }
+}
 
+@Composable
+fun Macchiatos(navController: NavController){
+    Column(modifier = Modifier
+        .padding(6.dp)
+        .background(DropDownBackground, shape = RoundedCornerShape(6.dp))
+        .padding(6.dp)
+    ) {
         Text(
-            text = "☕🔥",  // Emojis for the end
+            text = "Macchiatos",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = HeaderBackground,
+            color = ButtonBackground,
             textAlign = TextAlign.Center,
-            fontFamily = FontFamily.Default  // Ensuring emojis render correctly
+            fontFamily = FontFamily.Default
         )
+
+        Spacer(modifier = Modifier.width(15.dp))
+
+        LazyRow(modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
+            horizontalArrangement = Arrangement.Absolute.Left
+        ){
+            item{
+                CoffeeCard("Espresso Macchiato", R.drawable.espresso_macchiato_logo,BeverageDataSource().Caffe_Latte,navController)
+            }
+
+            item{
+                CoffeeCard("Caramel Macchiato", R.drawable.caramel_macchiato_logo,BeverageDataSource().Caffe_Latte,navController)
+            }
+
+        }
+    }
+}
+
+@Composable
+fun Mochas(navController: NavController){
+    Column(modifier = Modifier
+        .padding(6.dp)
+        .background(DropDownBackground, shape = RoundedCornerShape(6.dp))
+        .padding(6.dp)
+    ) {
+        Text(
+            text = "Mochas",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = ButtonBackground,
+            textAlign = TextAlign.Center,
+            fontFamily = FontFamily.Default
+        )
+
+        Spacer(modifier = Modifier.width(15.dp))
+
+        LazyRow(modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
+            horizontalArrangement = Arrangement.Absolute.Left
+        ){
+            item{
+                CoffeeCard("Caffe Mocha", R.drawable.cafe_mocha_logo,BeverageDataSource().Caffe_Latte,navController)
+            }
+
+            item{
+                CoffeeCard("White Chocolate Mocha", R.drawable.wc_mocha_logo,BeverageDataSource().Caffe_Latte,navController)
+            }
+
+        }
+    }
+}
+
+@Composable
+fun Cappuccino(navController: NavController){
+    Column(modifier = Modifier
+        .padding(6.dp)
+        .background(DropDownBackground, shape = RoundedCornerShape(6.dp))
+        .padding(6.dp)
+    ) {
+        Text(
+            text = "Cappuccino",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = ButtonBackground,
+            textAlign = TextAlign.Center,
+            fontFamily = FontFamily.Default
+        )
+
+        Spacer(modifier = Modifier.width(15.dp))
+
+        LazyRow(modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
+            horizontalArrangement = Arrangement.Absolute.Left
+        ){
+            item{
+                CoffeeCard("Cappuccino", R.drawable.cappuccino_logo,BeverageDataSource().Caffe_Latte,navController)
+            }
+
+        }
     }
 }
 
@@ -211,7 +314,7 @@ fun Lattes(navController: NavController){
             }
 
             item {
-                CoffeeCard("Lavender Oatmilk Latte", R.drawable.lavender_oatmilk_latte,BeverageDataSource().Caffe_Latte,navController)
+                CoffeeCard("Lavender Oatmilk Latte", R.drawable.lavender_oatmilk_latte,BeverageDataSource().Lavender_Oatmilk_Latte,navController)
             }
 
             item{

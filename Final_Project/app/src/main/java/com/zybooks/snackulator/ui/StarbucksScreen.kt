@@ -73,11 +73,27 @@ fun StarbucksScreen(navController: NavController) {
         }
 
         item{
-            DrinkCat("Iced Coffees", R.drawable.iced_coffee_logo,navController,"hot_coffee")
+            DrinkCat("Cold Coffees", R.drawable.iced_coffee_logo,navController,"hot_coffee")
+        }
+
+        item{
+            DrinkCat("Hot Teas", R.drawable.hot_tea_logo,navController,"hot_coffee")
+        }
+
+        item{
+            DrinkCat("Cold Teas", R.drawable.cold_tea_logo,navController,"hot_coffee")
+        }
+
+        item{
+            DrinkCat("Frappuccinos", R.drawable.frap_logo,navController,"hot_coffee")
         }
 
         item{
             DrinkCat("Refreshers", R.drawable.refresher_logo,navController,"hot_coffee")
+        }
+
+        item{
+            DrinkCat("Iced Energy", R.drawable.iced_energy_logo, navController, "hot_coffee")
         }
 
 

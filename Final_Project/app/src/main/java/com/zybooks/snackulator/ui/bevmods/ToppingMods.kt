@@ -2,6 +2,7 @@ package com.zybooks.snackulator.ui.bevmods
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -80,6 +81,7 @@ fun ToppingDropDown(beverage: Beverage) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable(onClick = { expanded = !expanded })
             .padding(16.dp)
             .background(Color.White, shape = RoundedCornerShape(16.dp))
             .border(6.dp, color = HeaderBackground, shape = RoundedCornerShape(16.dp))

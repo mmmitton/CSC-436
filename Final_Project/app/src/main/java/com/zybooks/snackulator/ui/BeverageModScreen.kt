@@ -31,6 +31,7 @@ import com.zybooks.snackulator.data.Beverage
 import com.zybooks.snackulator.data.Milk
 import com.zybooks.snackulator.ui.bevmods.DrizzleDis
 import com.zybooks.snackulator.ui.bevmods.MilkDropDown
+
 import com.zybooks.snackulator.ui.bevmods.PowderDis
 import com.zybooks.snackulator.ui.bevmods.PowderDropDown
 import com.zybooks.snackulator.ui.bevmods.SauceDropDown
@@ -39,25 +40,28 @@ import com.zybooks.snackulator.ui.bevmods.SyrupDis
 import com.zybooks.snackulator.ui.bevmods.SyrupDropDown
 import com.zybooks.snackulator.ui.bevmods.ToppingDis
 import com.zybooks.snackulator.ui.bevmods.ToppingDropDown
+
 import com.zybooks.snackulator.ui.theme.ButtonBackground
 import com.zybooks.snackulator.ui.theme.HeaderBackground
+import kotlin.math.floor
+import kotlin.math.pow
 
 @Composable
-fun BeverageModScreen(beverage: Beverage,  onUpdate: (Beverage) -> Unit){
+fun BeverageModScreen(beverage: Beverage, onUpdate: (Beverage) -> Unit) {
     LazyColumn() {
-        item{
+        item {
             BevModTagline()
         }
 
-        item{
-            Row(){
+        item {
+            Row() {
                 DisplayCard(beverage)
                 NutritionDisplay(beverage)
             }
 
         }
 
-        item{
+        item {
             Text(
                 text = "Choose Drink Size",
                 style = TextStyle(
@@ -79,7 +83,7 @@ fun BeverageModScreen(beverage: Beverage,  onUpdate: (Beverage) -> Unit){
             })
         }
 
-        item{
+        item {
             Text(
                 text = "Choose Milk Option",
                 style = TextStyle(
@@ -100,7 +104,7 @@ fun BeverageModScreen(beverage: Beverage,  onUpdate: (Beverage) -> Unit){
             })
         }
 
-        item{
+        item {
             Text(
                 text = "Choose Syrup Options",
                 style = TextStyle(
@@ -114,20 +118,20 @@ fun BeverageModScreen(beverage: Beverage,  onUpdate: (Beverage) -> Unit){
             )
         }
 
-        item{
-            if(beverage.sauces != null) {
+        item {
+            if (beverage.sauces != null) {
                 Column {
                     SyrupDis(beverage)
                     SyrupDropDown(beverage)
                 }
 
-            }else{
+            } else {
                 SyrupDropDown(beverage)
             }
 
         }
 
-        item{
+        item {
             Text(
                 text = "Choose Topping Options",
                 style = TextStyle(
@@ -141,20 +145,20 @@ fun BeverageModScreen(beverage: Beverage,  onUpdate: (Beverage) -> Unit){
             )
         }
 
-        item{
-            if(beverage.toppings != null){
+        item {
+            if (beverage.toppings != null) {
                 ToppingDis(beverage)
                 ToppingDropDown(beverage)
 
-            }else{
+            } else {
                 ToppingDropDown(beverage)
             }
 
         }
 
-        item{
+        item {
             Text(
-                text = "Choose Drizzle Options",
+                text = "Choose Sauce Options",
                 style = TextStyle(
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
@@ -165,17 +169,17 @@ fun BeverageModScreen(beverage: Beverage,  onUpdate: (Beverage) -> Unit){
             )
         }
 
-        item{
-            if(beverage.sauces != null){
+        item {
+            if (beverage.sauces != null) {
                 DrizzleDis(beverage)
                 SauceDropDown(beverage)
-            }else{
+            } else {
                 SauceDropDown(beverage)
             }
 
         }
 
-        item{
+        item {
             Text(
                 text = "Choose Powder Options",
                 style = TextStyle(
@@ -189,11 +193,11 @@ fun BeverageModScreen(beverage: Beverage,  onUpdate: (Beverage) -> Unit){
             )
         }
 
-        item{
-            if(beverage.powders != null){
+        item {
+            if (beverage.powders != null) {
                 PowderDis(beverage)
                 PowderDropDown(beverage)
-            }else{
+            } else {
                 PowderDropDown(beverage)
             }
 
@@ -205,27 +209,38 @@ fun BeverageModScreen(beverage: Beverage,  onUpdate: (Beverage) -> Unit){
 
 @Composable
 fun BevModTagline() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
+
+    Row(modifier = Modifier
+        .fillMaxWidth()
+        .padding(16.dp),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically){
+
         Text(
-            text = "☕✨ Espresso Yourself—One Sip at a Time! ✨☕",
+            text = "☕✨",
+            fontSize = 34.sp,
+            fontWeight = FontWeight.Bold,
+            color = HeaderBackground,
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = "Espresso Yourself—One Sip at a Time!",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = HeaderBackground,
             textAlign = TextAlign.Center
         )
+
     }
+
 }
 
+
 @Composable
-fun DisplayCard(beverage: Beverage){
+fun DisplayCard(beverage: Beverage) {
     Box(
         modifier = Modifier
-            .size(300.dp)
+            .size(200.dp)
             .padding(6.dp)
     ) {
         Column(
@@ -238,7 +253,7 @@ fun DisplayCard(beverage: Beverage){
                 contentDescription = "Drink Image",
                 modifier = Modifier
                     .clip(shape = RoundedCornerShape(8.dp))
-                    .size(100.dp),
+                    .size(120.dp),
                 contentScale = ContentScale.Crop
             )
 
@@ -247,7 +262,7 @@ fun DisplayCard(beverage: Beverage){
             Text(
                 text = beverage.name,
                 style = TextStyle(
-                    fontSize = 20.sp,
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = ButtonBackground,
                     textAlign = TextAlign.Center
@@ -260,11 +275,11 @@ fun DisplayCard(beverage: Beverage){
 @Composable
 fun NutritionDisplay(beverage: Beverage) {
     // Compute nutrition values based on current beverage state.
-    val cal = beverage.calculateCalories()
-    val protein = beverage.calculateProtein()
-    val carbs = beverage.calculateCarbs()
-    val fat = beverage.calculateFat()
-    val sodium = beverage.calculateSodium()
+    val cal = truncateDouble(beverage.calculateCalories(),2)
+    val protein = truncateDouble(beverage.calculateProtein(),2)
+    val carbs = truncateDouble(beverage.calculateCarbs(),2)
+    val fat = truncateDouble(beverage.calculateFat(),2)
+    val sodium = truncateDouble(beverage.calculateSodium(),2)
 
     Box(
         modifier = Modifier
@@ -325,11 +340,14 @@ fun NutritionDisplay(beverage: Beverage) {
     }
 }
 
-
+fun truncateDouble(value: Double, decimals: Int): Double {
+    val factor = 10.0.pow(decimals)
+    return floor(value * factor) / factor
+}
 
 
 @Preview(showBackground = true)
 @Composable
-fun ModPrev(){
+fun ModPrev() {
     //BeverageModScreen(myBeverage)
 }

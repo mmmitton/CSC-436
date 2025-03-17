@@ -4,6 +4,7 @@ package com.zybooks.snackulator.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,6 +53,7 @@ import com.zybooks.snackulator.ui.theme.FavoriteHeart
 import com.zybooks.snackulator.ui.theme.HeaderBackground
 import com.zybooks.snackulator.ui.theme.SnackulatorTheme
 import androidx.navigation.NavController
+import com.zybooks.snackulator.data.BeverageDataSource
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -79,11 +81,15 @@ fun HomeScreen(navController: NavController) {
 
 
         item{
+            val jc_bev = BeverageDataSource().Mocha_Cookie_Frap
             Image(
                 painter = painterResource(id = R.drawable.java_chip_frap),
                 contentDescription = "Java Chip Frap",
                 modifier = Modifier
                     .padding(16.dp)
+                    .clickable(onClick = {
+                        navController.navigate("bevmodscreen/${jc_bev.name}")
+                    })
                     .clip(RoundedCornerShape(16.dp))
             )
         }
@@ -217,6 +223,7 @@ fun ResturantDropDown(navController: NavController){
 
     Box( modifier = Modifier
         .fillMaxWidth()
+        .clickable(onClick = { expanded = !expanded })
         .padding(16.dp)
         .background(Color.White, shape = RoundedCornerShape(16.dp))
         .border(6.dp, color = HeaderBackground, shape = RoundedCornerShape(16.dp))

@@ -2,6 +2,7 @@ package com.zybooks.snackulator.ui.bevmods
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -43,6 +44,7 @@ fun MilkDropDown(beverage: Beverage, onMilkChange: (Milk) -> Unit) {
 
     Box(
         modifier = Modifier
+            .clickable(onClick = { expanded = !expanded })
             .fillMaxWidth()
             .padding(16.dp)
             .background(Color.White, shape = RoundedCornerShape(16.dp))

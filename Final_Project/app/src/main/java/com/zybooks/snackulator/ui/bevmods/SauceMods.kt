@@ -129,7 +129,7 @@ fun SauceBoxDis(
 fun SauceDropDown(beverage: Beverage) {
     var expanded by remember { mutableStateOf(false) }
     // Use the sauce map to decide the display text.
-    val displayText = if (beverage.sauces.isNullOrEmpty()) "Add Drizzle" else "Add Another Drizzle"
+    val displayText = if (beverage.sauces.isNullOrEmpty()) "Add Sauce" else "Add Another Sauce"
 
     val sauceData = SauceDataSource()
     val sauceOptions = sauceData.getSauceList()
@@ -137,6 +137,7 @@ fun SauceDropDown(beverage: Beverage) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable(onClick = { expanded = !expanded })
             .padding(16.dp)
             .background(Color.White, shape = RoundedCornerShape(16.dp))
             .border(6.dp, color = HeaderBackground, shape = RoundedCornerShape(16.dp))
