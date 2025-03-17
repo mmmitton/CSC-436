@@ -36,7 +36,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.min
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.zybooks.snackulator.R
+import com.zybooks.snackulator.data.Beverage
+import com.zybooks.snackulator.data.BeverageDataSource
 import com.zybooks.snackulator.ui.theme.ButtonBackground
 import com.zybooks.snackulator.ui.theme.DropDownBackground
 import com.zybooks.snackulator.ui.theme.HeaderBackground
@@ -44,22 +47,22 @@ import com.zybooks.snackulator.ui.theme.SnackulatorTheme
 
 
 @Composable
-fun HotCoffeeScreen(){
+fun HotCoffeeScreen(navController: NavController){
     LazyColumn {
         item{
             HotCoffeeTagline()
         }
 
         item{
-            BrewedCoffees()
+            BrewedCoffees(navController)
         }
 
         item{
-            Americanos()
+            Americanos(navController)
         }
 
         item{
-            Lattes()
+            Lattes(navController)
         }
     }
 
@@ -109,7 +112,7 @@ fun HotCoffeeTagline() {
 }
 
 @Composable
-fun Americanos(){
+fun Americanos(navController: NavController){
     Column(modifier = Modifier
         .padding(6.dp)
         .background(DropDownBackground, shape = RoundedCornerShape(6.dp))
@@ -132,7 +135,7 @@ fun Americanos(){
             horizontalArrangement = Arrangement.Absolute.Left
         ){
             item{
-                CoffeeCard("Cafe Americano", R.drawable.americano_logo)
+                CoffeeCard("Cafe Americano", R.drawable.americano_logo,BeverageDataSource().Caffe_Latte,navController)
             }
 
         }
@@ -140,7 +143,7 @@ fun Americanos(){
 }
 
 @Composable
-fun BrewedCoffees(){
+fun BrewedCoffees(navController: NavController){
     Column(modifier = Modifier
         .padding(6.dp)
         .background(DropDownBackground, shape = RoundedCornerShape(6.dp))
@@ -163,25 +166,25 @@ fun BrewedCoffees(){
             horizontalArrangement = Arrangement.SpaceEvenly
             ) {
             item{
-                CoffeeCard("Blonde Roast - Sunsera", R.drawable.brewed_blonde_logo)
+                CoffeeCard("Blonde Roast - Sunsera", R.drawable.brewed_blonde_logo,BeverageDataSource().Caffe_Latte,navController)
             }
             item{
-                CoffeeCard("Medium Roast - Pike Place", R.drawable.brewed_pike)
-            }
-
-            item{
-                CoffeeCard("Featured Dark Roast", R.drawable.brewed_blonde_logo)
+                CoffeeCard("Medium Roast - Pike Place", R.drawable.brewed_pike,BeverageDataSource().Caffe_Latte,navController)
             }
 
             item{
-                CoffeeCard("Caffe Misto", R.drawable.cafe_miso_logo)
+                CoffeeCard("Featured Dark Roast", R.drawable.brewed_blonde_logo,BeverageDataSource().Caffe_Latte,navController)
+            }
+
+            item{
+                CoffeeCard("Caffe Misto", R.drawable.cafe_miso_logo,BeverageDataSource().Caffe_Latte,navController)
             }
         }
     }
 }
 
 @Composable
-fun Lattes(){
+fun Lattes(navController: NavController){
     Column(modifier = Modifier
         .padding(6.dp)
         .background(DropDownBackground, shape = RoundedCornerShape(6.dp))
@@ -204,23 +207,23 @@ fun Lattes(){
             horizontalArrangement = Arrangement.Absolute.Left
         ){
             item{
-                CoffeeCard("Caffe Latte", R.drawable.caffe_latte_logo)
+                CoffeeCard("Caffe Latte", R.drawable.caffe_latte_logo,BeverageDataSource().Caffe_Latte,navController)
             }
 
             item {
-                CoffeeCard("Lavender Oatmilk Latte", R.drawable.lavender_oatmilk_latte)
+                CoffeeCard("Lavender Oatmilk Latte", R.drawable.lavender_oatmilk_latte,BeverageDataSource().Caffe_Latte,navController)
             }
 
             item{
-                CoffeeCard("Cinnamon Dolce Latte", R.drawable.cinnamon_dolce_latte)
+                CoffeeCard("Cinnamon Dolce Latte", R.drawable.cinnamon_dolce_latte,BeverageDataSource().Caffe_Latte,navController)
             }
 
             item{
-                CoffeeCard("Blonde Vanilla Latte", R.drawable.blonde_vanilla_latte)
+                CoffeeCard("Blonde Vanilla Latte", R.drawable.blonde_vanilla_latte,BeverageDataSource().Caffe_Latte,navController)
             }
 
             item{
-                CoffeeCard("Pistachio Latte", R.drawable.pistacio_latte)
+                CoffeeCard("Pistachio Latte", R.drawable.pistacio_latte, BeverageDataSource().Caffe_Latte,navController)
             }
 
         }
@@ -228,24 +231,25 @@ fun Lattes(){
 }
 
 @Composable
-fun CoffeeCard(name: String, pic: Int) {
+fun CoffeeCard(name: String, pic: Int, beverage: Beverage, navController: NavController) {
     Box(
         modifier = Modifier
             .width(100.dp)
             .padding(6.dp)
             .clickable(
                 onClick = {
-
+                    // Navigate using the beverage name directly
+                    navController.navigate("bevmodscreen/${beverage.name}")
                 }
             ),
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(), // Allow the Column to fill the Box
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center // Vertically center the content
+            verticalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(id = pic), // Correct way to use the image resource
+                painter = painterResource(id = pic),
                 contentDescription = "Drink Image",
                 modifier = Modifier
                     .clip(shape = RoundedCornerShape(8.dp))
@@ -253,7 +257,7 @@ fun CoffeeCard(name: String, pic: Int) {
                 contentScale = ContentScale.Crop
             )
 
-            Spacer(modifier = Modifier.height(10.dp)) // Adds space between image and text
+            Spacer(modifier = Modifier.height(10.dp))
 
             Text(
                 text = name,
@@ -274,7 +278,7 @@ fun CoffeeCard(name: String, pic: Int) {
 @Preview(showBackground = true)
 @Composable
 fun ScreenHCPreview() {
-    SnackulatorTheme { HotCoffeeScreen() }
+    //SnackulatorTheme { HotCoffeeScreen(n) }
 
 
 }

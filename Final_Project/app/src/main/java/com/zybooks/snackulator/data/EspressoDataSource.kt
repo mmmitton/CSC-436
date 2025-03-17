@@ -10,4 +10,8 @@ class EspressoDataSource {
     )
 
     fun getEspressoList(): List<Espresso> = EspressoList
+
+    fun findEspresso(e : EspressoType): Espresso?{
+        return getEspressoList().find { it.espressoType == e }
+    }
 }

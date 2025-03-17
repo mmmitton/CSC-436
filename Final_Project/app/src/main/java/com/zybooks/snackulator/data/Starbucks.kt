@@ -43,6 +43,18 @@ enum class RefresherBases{
     Blackberry_Sage, Mango_Dragonfruit, Strawberry_acai
 }
 
+enum class SyrupTypes{
+    Vanilla, Brown_Sugar, Cinnamon_Dolce, Hazelnut, Peppermint, SF_Vanilla
+}
+
+enum class SauceTypes{
+    Mocha, Caramel, WC_Mocha, Pistachio
+}
+
+enum class PowderTypes{
+    Cherry, Chocolate, Lavender, Vanilla, Matcha
+}
+
 
 data class Milk(
     val milk_type: Milks,
@@ -55,6 +67,7 @@ data class Milk(
 
 data class Syrup(
     val f_type: Flavors,
+    val s_type: SyrupTypes,
     val name: String,
     val calories: Double,
     val carbs: Double,
@@ -65,6 +78,7 @@ data class Syrup(
 
 data class Sauce(
     val f_type: Flavors,
+    val sauce_type: SauceTypes,
     val name: String,
     val calories: Double,
     val carbs: Double,
@@ -75,12 +89,18 @@ data class Sauce(
 
 data class Powder(
     val f_type: Flavors,
+    val p_type: PowderTypes,
     val name: String,
     val calories: Double,
     val carbs: Double,
     val fat: Double,
     val sodium: Double,
     val protein: Double
+)
+
+data class Sizes(
+    val s: Size,
+    val ounces: Int
 )
 
 
