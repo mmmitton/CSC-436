@@ -16,7 +16,8 @@ fun SnackApp(){
         startDestination = "home")
     {
         composable("home"){ HomeScreen(navController) }
-        composable("starbucks"){ StarbucksScreen() }
+        composable("starbucks"){ StarbucksScreen(navController) }
+        composable("hot_coffee"){ HotCoffeeScreen() }
 
     }
 }
