@@ -6,11 +6,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -37,36 +40,52 @@ import com.zybooks.snackulator.ui.theme.DropDownBackground
 import com.zybooks.snackulator.ui.theme.HeaderBackground
 
 @Composable
-fun ToppingDis(beverage: Beverage){
-    val top_lis = beverage.toppings
-    top_lis?.forEach { top ->
-        TopBoxDis(top)
+fun ToppingDis(beverage: Beverage) {
+    // Iterate over the current toppings list.
+    beverage.toppings?.forEach { topping ->
+        TopBoxDis(topping = topping, onRemove = {
+            // Remove the topping by filtering it out of the current list.
+            beverage.toppings = beverage.toppings?.filter { it != topping }
+        })
     }
 }
 
 @Composable
-fun TopBoxDis(topping: Topping){
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .padding(16.dp)
-        .background(Color.White, shape = RoundedCornerShape(16.dp))
-        .border(6.dp, color = HeaderBackground, shape = RoundedCornerShape(16.dp))
-    ){
-        Row(){
+fun TopBoxDis(topping: Topping, onRemove: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .background(Color.White, shape = RoundedCornerShape(16.dp))
+            .border(6.dp, color = HeaderBackground, shape = RoundedCornerShape(16.dp))
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(
                 text = topping.toppingType.toString(),
                 color = ButtonBackground,
                 style = TextStyle(
-                    fontSize = 18.sp,  // Set the font size
-                    fontFamily = FontFamily.SansSerif,  // Set the font family (e.g., SansSerif)
-                    fontWeight = FontWeight.Bold  // Set the font weight (e.g., Bold)
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight.Bold
                 ),
                 modifier = Modifier.padding(16.dp)
             )
+            Spacer(modifier = Modifier.weight(1f))
+            Icon(
+                Icons.Rounded.Close,
+                contentDescription = "Remove Topping",
+                modifier = Modifier
+                    .padding(16.dp)
+                    .clickable { onRemove() },
+                tint = HeaderBackground
+            )
         }
-
     }
 }
+
 
 @Composable
 fun ToppingDropDown(beverage: Beverage) {
